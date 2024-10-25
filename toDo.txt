@@ -1,4 +1,4 @@
 1) Data augmentation
 2) Costruire uno script che prende in input un dato sintetico di una stella al fine di simulare il funzionamento del modello
-3) data plotting
-4) k fold cross validations
+3) data plotting da aggiustare e aggiungere distribuzione, vedere kns e gephi clustering  dami entro venerdi
+4) k fold cross validations e fine tuning gabri entro giove/vene
