@@ -5,9 +5,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 import joblib
+import os
 
-# Passo 1: Caricamento e pulizia del dataset
-df = load_data('C:/Users/hp/ClassificationOfVariableStars/VariableStarClassification/data/PLV_LINEAR.csv')  # path corretto per il dataset
+# Passo 0: Caricamento  del dataset
+current_dir = os.getcwd()  
+local_file_path  = "\VariableStarClassification\data\PLV_LINEAR.csv"
+fullDataSetPath = current_dir + local_file_path
+df = load_data(fullDataSetPath)  # path corretto per il dataset
+
+# Passo 1: Pulizia del dataset 
 df = clean_data(df)
 
 # Passo 2: Preprocessing dei dati
@@ -27,4 +33,5 @@ print(f"Accuracy: {accuracy:.2f}\n")
 print(classification_report(y_test, y_pred, zero_division=1))
 
 # Passo 6: Salvataggio del modello
-joblib.dump(model, 'C:/Users/hp/ClassificationOfVariableStars/VariableStarClassification/models/final_model.pkl')
+outputPath = current_dir + "/VariableStarClassification/models/final_model.pkl"
+joblib.dump(model, outputPath)
