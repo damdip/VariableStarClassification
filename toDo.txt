@@ -1,6 +1,5 @@
-3) gephi clustering  dami entro venerdi
-4) k fold cross validations e fine tuning gabri entro giove/vene
-5) !! ricordarsi di aggiornare il data cleaning del model !!
-6) data plotting da vedere e lasciare solamente i grafici che hanno senso
-7) togliere le colonne inutili in forza del notebook di gabriele
-8) kns doc su pc dami
+1) gephi clustering per la presentazione
+2) data plotting da vedere e lasciare solamente i grafici che hanno senso
+3) togliere altre colonne inutili dal dataset
+4) PCA
+5) aggiungere parametri al model per poi fare fine tuning

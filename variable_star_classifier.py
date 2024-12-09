@@ -10,7 +10,7 @@ import os
 
 # Passo 0: Caricamento  del dataset
 current_dir = os.getcwd()  
-local_file_path  = "\VariableStarClassification\data\PLV_LINEAR.csv"
+local_file_path  = "\data\PLV_LINEAR.csv"
 fullDataSetPath = current_dir + local_file_path
 df = load_data(fullDataSetPath)  # path corretto per il dataset
 
@@ -40,5 +40,5 @@ print(f"Accuracy: {accuracy:.2f}\n")
 print(classification_report(y_test, y_pred, zero_division=1))
 
 # Passo 6: Salvataggio del modello
-outputPath = current_dir + "/VariableStarClassification/models/final_model.pkl"
+outputPath = current_dir + "\models\\final_model.pkl"
 joblib.dump(model, outputPath)
