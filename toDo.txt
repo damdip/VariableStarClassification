@@ -1,4 +1,5 @@
-1) Data augmentation
-2) Costruire uno script che prende in input un dato sintetico di una stella al fine di simulare il funzionamento del modello
-3) data plotting
-4) k fold cross validations
+1) gephi clustering per la presentazione
+2) data plotting da vedere e lasciare solamente i grafici che hanno senso
+3) togliere altre colonne inutili dal dataset
+4) PCA
+5) aggiungere parametri al model per poi fare fine tuning
