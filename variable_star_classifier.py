@@ -1,9 +1,10 @@
 # classifier.py
 from src.data_loader import load_data, clean_data
 from src.preprocessing import preprocess_data
+from src.cross_validation import perform_k_fold_cross_validation
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.ensemble import RandomForestClassifier
 import joblib
 
 # Passo 1: Caricamento e pulizia del dataset
@@ -16,8 +17,14 @@ X, y = preprocess_data(df)
 # Passo 3: Divisione del dataset in training e test set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Passo 4: Addestramento del modello
+# Passo 4: Creazione del modello
 model = RandomForestClassifier(random_state=42)
+
+# Esegui la k-fold cross-validation solo su X_train e y_train
+k = 5  # Ad esempio, 5-fold cross-validation
+perform_k_fold_cross_validation(model, X_train, y_train, k)
+
+# Allena il modello sul training set completo
 model.fit(X_train, y_train)
 
 # Passo 5: Valutazione del modello

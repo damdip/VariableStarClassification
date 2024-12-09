@@ -8,7 +8,7 @@ def preprocess_data(df):
     df = pd.get_dummies(df, drop_first=True)
     
     # Separazione delle feature (X) e della variabile target (y)
-    X = df.drop('LCtype', axis=1)  # la variabile target effettiva è 'LCtype'
+    X = df.drop('LCtype', axis=1)  # la variabile target è 'LCtype'
     y = df['LCtype']
     
     # Scaling delle feature
