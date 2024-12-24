@@ -14,9 +14,21 @@ current_dir = os.getcwd()
 local_file_path  = "\VariableStarClassification\data\PLV_LINEAR.csv"
 fullDataSetPath = current_dir + local_file_path
 df = load_data(fullDataSetPath)  # path corretto per il dataset
+# Rimuove qualsiasi tipo di carattere di spazio dai nomi delle colonne
 
-# Passo 1: Pulizia del dataset 
-df = clean_data(df)
+
+df.columns = df.columns.str.replace(r'\s+', '', regex=True)
+
+df = df.drop(["#","LR"], axis=1) # la rimozione di una colonna correlata non porta a differenze, random forest resiste bene 
+# alle correlazioni
+
+
+#Rimozione di alcune classi
+# Filtra il dataframe escludendo questi valori
+df = df[~df['LCtype'].isin([3, 9, 11, 8])]
+
+
+print("\nAnteprima dei dati caricati:\n", df.head())
 
 # Passo 2: Preprocessing dei dati
 X, y = preprocess_data(df)
@@ -30,11 +42,6 @@ model = RandomForestClassifier(random_state=42)
 # Esegui la k-fold cross-validation solo su X_train e y_train
 #k = 5  # Ad esempio, 5-fold cross-validation
 #perform_k_fold_cross_validation(model, X_train, y_train, k)
-
-pca = PCA(n_components=10)  #percentuale di varianza spiegata che vogliamo mantenere dopo la pca
-X_train_pca = pca.fit_transform(X_train)  # Fitta la PCA e trasforma i dati di training
-X_test_pca = pca.transform(X_test)        # Applica la stessa trasformazione ai dati di test
-
 
 # Allena il modello sul training set completo
 model.fit(X_train, y_train)

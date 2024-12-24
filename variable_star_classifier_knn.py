@@ -4,6 +4,7 @@ from src.preprocessing import preprocess_data
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.decomposition import PCA
 import joblib
 import os
 from sklearn.neighbors import KNeighborsClassifier
@@ -24,20 +25,27 @@ X, y = preprocess_data(df)
 # Passo 3: Divisione del dataset in training e test set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+# Passo 4: Applicazione della PCA
+# Manteniamo il 95% della varianza spiegata
+pca = PCA(n_components=10)  #percentuale di varianza spiegata che vogliamo mantenere dopo la pca
+X_train_pca = pca.fit_transform(X_train)  # Fitta la PCA e trasforma i dati di training
+X_test_pca = pca.transform(X_test)        # Applica la stessa trasformazione ai dati di test
+#prima della pca avevamo accuratezza al 75% circa
+#con la pca arriviamo al 70%, le prestazioni degradano. Il modello è sensibile alla riduzione 
+
 # Inizializza il modello KNN con il parametro k (ad esempio, k=3)
-for k in range (1,25):
-    knn = KNeighborsClassifier(n_neighbors=k)
 
-    # Allena il modello sui dati di addestramento
-    knn.fit(X_train, y_train)
+knn = KNeighborsClassifier(n_neighbors=10)
 
-    # Fai previsioni sul set di test
-    y_pred = knn.predict(X_test)
+# Allena il modello sui dati di addestramento
+knn.fit(X_train_pca, y_train)
 
-    # Calcola l'accuratezza del modello
-    accuracy = accuracy_score(y_test, y_pred)
-    print(f"Accuratezza del modello KNN: {accuracy * 100:.2f}%")
+# Fai previsioni sul set di test
+y_pred = knn.predict(X_test_pca)
 
-    #Come controllo la correttezza della previsione?
+# Calcola l'accuratezza del modello
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuratezza del modello KNN: {accuracy * 100:.2f}%")
+
     
 
