@@ -1,6 +1,7 @@
 # src/data_loader.py
 import numpy as np
 import pandas as pd
+import os
 
 def load_data(path):
 
@@ -26,3 +27,16 @@ def clean_data(df):
     print("\nAnteprima dei dati caricati:\n", df.head())
 
     return df
+
+def getDataSetPath():
+    current_dir = os.getcwd()  
+    local_file_path  = "\VariableStarClassification\data\PLV_LINEAR.csv"
+
+    return  current_dir + local_file_path
+
+def getOutputPath():
+    current_dir = os.getcwd()
+    outputPath = current_dir + "\VariableStarClassification\models\\final_model.pkl"
+
+    return outputPath
+

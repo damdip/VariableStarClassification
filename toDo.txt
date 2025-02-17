@@ -1,5 +1,29 @@
+Powerpoint e presentazione
 
-17 gennaio
-6) Usare più modelli circa 4/5 per poi fare delle dovute valutazioni su correlazione pca ecc ecc.
-7) Relazione - pp -  gephi clustering per la presentazione
 
+utilizzo di altri modelli, e prestazioni a confronto: 
+
+Prima scelta: Naive Bayes.
+Seconda scelta: SVM con kernel lineare, se i dati sono ben separati.
+Terza scelta: Random Forest o Gradient Boosting, se le relazioni tra feature sono più complesse.
+
+Modelli probabilistici:
+
+    Naive bayes: adatto quando le feature sono distribuite in modo normale o quasi normale.
+
+        Pro: è veloce e computazionalmente leggero , funziona bene con dataset piccoli, ideale per problemi di classificazione.
+        Contro : potrebbe non gestire bene le correlazioni fra feature, ma il nostro dataset ha poche correlazioni
+
+Algoritmi ad alberi OK
+    Random Forest
+
+    Combina più alberi per migliorare la stabilità e ridurre il rischio di overfitting.
+    Vantaggi:
+    Funziona bene anche con dataset piccoli.
+    Riduce la varianza rispetto a un singolo albero.
+    Limiti: Più costoso computazionalmente rispetto a un singolo albero.
+
+
+Algoritmi non lineari
+
+    Support Vector Machine (SVM) con kernel non lineare
