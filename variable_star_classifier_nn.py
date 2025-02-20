@@ -21,7 +21,10 @@ X, y = preprocess_data(df)
 
 # One-hot encoding delle classi
 encoder = OneHotEncoder(sparse_output=False)
-y = encoder.fit_transform(y.shape(-1, 1))
+y = encoder.fit_transform(np.array(y).reshape(-1, 1))
+
+print(y[:5]) 
+
 
 #Divisione del dataset in training e test set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -36,8 +39,8 @@ model = keras.Sequential([
 
 # Compilare il modello
 model.compile(optimizer="adam",
-              loss="categorical_crossentropy",  # Per multi-class classification
-              metrics=['accuracy', "precision", "recall", "AUC"])
+            loss="categorical_crossentropy",  # Per multi-class classification
+            metrics=['accuracy', "precision", "recall", "AUC"])
 
 # Addestrare il modello
 model.fit(X_train, y_train, epochs=50, batch_size=8, validation_data=(X_test, y_test))
@@ -45,8 +48,8 @@ model.fit(X_train, y_train, epochs=50, batch_size=8, validation_data=(X_test, y_
 # Valutare il modello
 test_loss, test_acc, test_prec, test_rec, test_f1 = model.evaluate(X_test, y_test)
 print(f"Accuratezza sul test set: {test_acc:.2f}")
-print(f"Precision sul test set: {test_acc:.2f}")
-print(f"Recall sul test set: {test_acc:.2f}")
-print(f"F1 sul test set: {test_acc:.2f}")
+print(f"Precision sul test set: {test_prec:.2f}")
+print(f"Recall sul test set: {test_rec:.2f}")
+print(f"F1 sul test set: {test_f1:.2f}")
 
 

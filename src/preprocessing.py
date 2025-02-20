@@ -7,6 +7,15 @@ def preprocess_data(df):
     # Encoding delle variabili categoriche, serve a convertire le variabili categoriche in variabili numeriche
     df = pd.get_dummies(df, drop_first=True)
     
+    #Rimozione di alcune classi
+    # Filtra il dataframe escludendo questi valori
+    df = df[~df['LCtype'].isin([3, 9, 11, 8])]
+
+
+
+
+
+
     # Separazione delle feature (X) e della variabile target (y)
     X = df.drop('LCtype', axis=1)  # la variabile target è 'LCtype'
     y = df['LCtype']
@@ -14,5 +23,6 @@ def preprocess_data(df):
     # Scaling delle feature
     scaler = StandardScaler()
     X = scaler.fit_transform(X)
+
     
     return X, y

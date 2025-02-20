@@ -14,17 +14,6 @@ df = load_data(getDataSetPath())  # path corretto per il dataset
 # Rimuove qualsiasi tipo di carattere di spazio dai nomi delle colonne
 
 
-df.columns = df.columns.str.replace(r'\s+', '', regex=True)
-
-df = df.drop(["#","LR"], axis=1) # la rimozione di una colonna correlata non porta a differenze, random forest resiste bene 
-# alle correlazioni
-
-
-#Rimozione di alcune classi
-# Filtra il dataframe escludendo questi valori
-df = df[~df['LCtype'].isin([3, 9, 11, 8])]
-
-
 print("\nAnteprima dei dati caricati:\n", df.head())
 
 #Preprocessing dei dati
